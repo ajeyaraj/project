@@ -5,66 +5,46 @@
  */
 package project;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-class CustomerController {
+public class CustomerController {
 
-  private final CustomerRepository repository;
+    private final CustomerService customerService;
 
-  CustomerController(CustomerRepository repository) {
-    this.repository = repository;
-  }
+    @Autowired
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
+    @GetMapping("/customers")
+    public List<Customer> getCustomers() {
+        return customerService.getAllCustomers();
+    }
 
-  // Aggregate root
-  // tag::get-aggregate-root[]
-  @GetMapping("/customers")
-  List<Customer> all() {
-    return repository.findAll();
-  }
-  // end::get-aggregate-root[]
+    @GetMapping("/customers/{id}")
+    public Customer getCustomerById(@PathVariable Long id){
+        return customerService.getCustomerById(id);
+    }
 
-  @PostMapping("/customers")
-  Customer newCustomer(@RequestBody Customer newCustomer) {
-    return repository.save(newCustomer);
-  }
+    @PostMapping("/addCustomer")
+    public void createNewCustomer(@RequestBody Customer newCustomer) {
+        customerService.addNewCustomer(newCustomer);
+    }
 
-  // Single item
-  
-  @GetMapping("/customers/{id}")
-  Customer one(@PathVariable Long id) {
-    
-    return repository.findById(id)
-      .orElseThrow(() -> new CustomerNotFoundException(id));
-  }
+    @PutMapping("/customers/{id}")
+    public Customer updateCustomer(@PathVariable(value = "id") Long id, @RequestBody Customer customerDetails) throws CustomerNotFoundException {
+        return customerService.updateCustomer(id, customerDetails);
+    }
 
-  @PutMapping("/customers/{id}")
-  Customer replaceEmployee(@RequestBody Customer newCustomer, @PathVariable Long id) {
-    
-    return repository.findById(id)
-      .map(customer -> {
-        customer.setName(newCustomer.getName());
-        customer.setGender(newCustomer.getGender());
-        customer.setAge(newCustomer.getAge());
-        return repository.save(customer);
-      })
-      .orElseGet(() -> {
-        newCustomer.setId(id);
-        return repository.save(newCustomer);
-      });
-  }
-
-  @DeleteMapping("/customers/{id}")
-  void deleteCustomer(@PathVariable Long id) {
-    repository.deleteById(id);
-  }
+    @DeleteMapping("/customers/{id}")
+    public void deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomerById(id);
+    }
 }

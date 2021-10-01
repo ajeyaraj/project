@@ -7,7 +7,6 @@ import java.util.Objects;
 
 @Entity
 class Contact {
-
     private @Id @GeneratedValue Long id;
     private String name;
     private String phone;

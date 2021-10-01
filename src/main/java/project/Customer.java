@@ -15,67 +15,73 @@ import javax.persistence.Id;
 class Customer {
 
   private @Id @GeneratedValue Long id;
-  private String name;
-  private String gender;
-  private int age;
+  private String companyName;
+  private String address;
+  private String country;
 
   public Customer() {}
 
-  Customer(String name,String gender, int age) {
-    this.name = name;
-    this.gender = gender;
-    this.age = age;
+  public Customer(String companyName, String address, String country) {
+    this.companyName = companyName;
+    this.address = address;
+    this.country = country;
   }
 
   public Long getId() {
-    return this.id;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-  public String getGender() {
-    return this.gender;
-  }
-  public int getAge() {
-    return this.age;
+    return id;
   }
 
   public void setId(Long id) {
     this.id = id;
   }
 
-   public void setGender(String gender) {
-    this.gender = gender;
-  }
-  
-  public void setName(String name) {
-    this.name = name;
+  public String getCompanyName() {
+    return companyName;
   }
 
-  public void setAge(int age) {
-    this.age = age;
+  public void setCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
   }
 
   @Override
   public boolean equals(Object o) {
-
     if (this == o)
       return true;
     if (!(o instanceof Customer))
       return false;
     Customer customer = (Customer) o;
-    return Objects.equals(this.id, customer.id) && Objects.equals(this.name, customer.name)
-        && Objects.equals(this.age, customer.age) && Objects.equals(this.gender, customer.gender);
+    return Objects.equals(this.id, customer.id) && Objects.equals(this.companyName, customer.companyName)
+        && Objects.equals(this.address, customer.address) && Objects.equals(this.country, customer.country);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.gender, this.age);
+    return Objects.hash(this.id, this.companyName, this.address, this.country);
   }
 
   @Override
   public String toString() {
-    return "Customer{" + "id=" + this.id +", gender='"+this.gender +", name='" + this.name + '\'' + ", age='" + this.age + '\'' + '}';
+    return "Customer{" +
+            "id=" + id +
+            ", companyName='" + companyName + '\'' +
+            ", address='" + address + '\'' +
+            ", country='" + country + '\'' +
+            '}';
   }
 }
