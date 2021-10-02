@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -29,7 +30,7 @@ public class OrderService {
 
     public Order getOrderById(Long id) {
         return orderRepository.findById(id)
-                .orElseThrow(() -> new CustomerNotFoundException(id));
+                .orElseThrow(() -> new OrderNotFoundException(id));
     }
 
     //Create order
@@ -56,6 +57,20 @@ public class OrderService {
     //Delete order
     public void deleteOrderById(Long id) {
         orderRepository.deleteById(id);
+    }
+
+    //Look up customer info by order
+    public Customer getCustomerInfoByOrderId(Long orderId){
+        Order order = getOrderById(orderId);
+        Long customerId = order.getCustomerId();
+        return customerService.getCustomerById(customerId);
+    }
+
+    //Look up product info by order
+    public Product getProductInfoByOrderId(Long orderId){
+        Order order = getOrderById(orderId);
+        String productName = order.getProductName();
+        return productService.getProductByName(productName);
     }
 
 }

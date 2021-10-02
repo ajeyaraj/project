@@ -25,6 +25,16 @@ public class  OrderController {
         return orderService.getOrderById(id);
     }
 
+    @GetMapping("/findCustomerInfo/id/{id}")
+    public Customer getCustomerInfoByOrderId(@PathVariable Long id){
+        return orderService.getCustomerInfoByOrderId(id);
+    }
+
+    @GetMapping("/findProductInfo/id/{id}")
+    public Product getProductInfoByOrderId(@PathVariable Long id){
+        return orderService.getProductInfoByOrderId(id);
+    }
+
     @PostMapping("/addOrder")
     public void createNewOrder(@RequestBody Order newOrder) {
         Double price = orderService.createNewOrder(newOrder);
