@@ -40,7 +40,6 @@ curl -v localhost:8080/productDetails/id/2
 curl -v localhost:8080/productDetails/description/It%20is%20in%20a%20good%20condition.
 curl -v localhost:8080/productDetails/comment/how%20old%20is%20the%20fridge
 
-
 curl -X POST localhost:8080/addProductDetail -H "Content-type:application/json" -d "{\"description\": \"It is in a good condition.\", \"comment\": \"What is the model of fridge?\"}"
 curl -X PUT localhost:8080/productDetails/3 -H "Content-type:application/json" -d "{\"description\": \"It is in a good condition.\", \"comment\": \"how old is the fridge\"}"
 curl -X DELETE localhost:8080/productDetails/1
