@@ -27,10 +27,26 @@ public class ContactService {
                 .orElseThrow(() -> new ContactNotFoundException(id));
     }
 
+    public List<Contact> getContactByName(String name){
+        return contactRepository.findContactByName(name);
+    }
+
+    public List<Contact> getContactByEmail(String name){
+        return contactRepository.findContactByEmail(name);
+    }
+
+    public List<Contact> getContactByPhone(String phone){
+        return contactRepository.findContactByPhone(phone);
+    }
+
+    public List<Contact> getContactByPosition(String position){
+        return contactRepository.findContactByPosition(position);
+    }
+
     //Create a new contact
     public Contact addNewContact(Contact contact){
-        Optional<Contact> contactByEmail = contactRepository.findContactByEmail(contact.getEmail());
-        if(contactByEmail.isPresent()){
+        List<Contact> contactByEmail = contactRepository.findContactByEmail(contact.getEmail());
+        if(!(contactByEmail.isEmpty())){
             throw new IllegalStateException("email taken");
         }
         return contactRepository.save(contact);

@@ -5,21 +5,17 @@
  */
 package project;
 
-/**
- *
- * @author lukey
- */
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Objects;
 
 @Entity
 class ProductDetail {
 
-    private @Id @GeneratedValue Long name;
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
     private String description;
     private String comment;
 
@@ -31,11 +27,11 @@ class ProductDetail {
     }
 
     public Long getId() {
-        return name;
+        return id;
     }
 
-    public void setId(Long name) {
-        this.name = name;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -54,31 +50,12 @@ class ProductDetail {
         this.comment = comment;
     }
 
-
-
-    public boolean equals(Object o) {
-        if (this == o){
-            return true;
-        }
-        if (!(o instanceof Contact)){
-            return false;
-        }
-        ProductDetail customerContact = (ProductDetail) o;
-        return Objects.equals(this.name, customerContact.name) && Objects.equals(this.description, customerContact.description)
-                && Objects.equals(this.comment, customerContact.comment);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.name, this.description, this.comment);
-    }
-
     @Override
     public String toString() {
-        return "Contact{" +
-                "name=" + name +
-                ", productCategory='" + description + '\'' +
-                ", comment ='" + comment+ '\'' +
+        return "ProductDetail{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }

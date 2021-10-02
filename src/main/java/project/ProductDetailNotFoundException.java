@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project;
 
-/**
- *
- * @author lukey
- */
-class ProductDetailNotFoundException extends RuntimeException {
+public class ProductDetailNotFoundException extends RuntimeException{
 
-  ProductDetailNotFoundException(Long id) {
-    super("Could not find customer " + id);
-  }
+    public ProductDetailNotFoundException(String message) {
+        super(message);
+    }
+
+    ProductDetailNotFoundException(Long id) {
+        super("Could not find product detail with id: " + id);
+    }
 }

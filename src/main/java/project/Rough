@@ -1,3 +1,4 @@
+mvn clean spring-boot:run
 Customer:
 curl -v localhost:8080/customers
 curl -v localhost:8080/customers/id/2
@@ -8,6 +9,18 @@ curl -v localhost:8080/customers/country/Australia
 curl -X POST localhost:8080/addCustomer -H "Content-type:application/json" -d "{\"companyName\": \"Aldi\", \"address\": \"Epping Rd\", \"country\": \"America\"}"
 curl -X PUT localhost:8080/customers/2 -H "Content-type:application/json" -d "{\"companyName\": \"Kmart\", \"address\": \"Marsfield\", \"country\": \"America\"}"
 curl -X DELETE localhost:8080/customers/1
+
+Customer contact:
+curl -v localhost:8080/contacts
+curl -v localhost:8080/contacts/id/2
+curl -v localhost:8080/contacts/name/Ashokkumar%20Jeyaraj
+curl -v localhost:8080/contacts/phone/9750961665
+curl -v localhost:8080/contacts/email/jashok45@gmail.com
+curl -v localhost:8080/contacts/position/Doctor
+
+curl -X POST localhost:8080/addContact -H "Content-type:application/json" -d "{\"name\": \"Aishwarya\", \"phone\": \"9750961665\", \"email\": \"aishu@gmail.com\", \"position\": \"Doctor\"}"
+curl -X PUT localhost:8080/contacts/3 -H "Content-type:application/json" -d "{\"name\": \"Sujatha\", \"phone\": \"9750961665\", \"email\": \"aishu@gmail.com\", \"position\": \"Doctor\"}"
+curl -X DELETE localhost:8080/contacts/1
 
 Product:
 curl -v localhost:8080/products
@@ -22,5 +35,13 @@ curl -X PUT localhost:8080/products/4 -H "Content-type:application/json" -d "{\"
 curl -X DELETE localhost:8080/products/1
 
 Product detail:
+curl -v localhost:8080/productDetails
+curl -v localhost:8080/productDetails/id/2
+curl -v localhost:8080/productDetails/description/It%20is%20in%20a%20good%20condition.
+curl -v localhost:8080/productDetails/comment/how%20old%20is%20the%20fridge
 
+
+curl -X POST localhost:8080/addProductDetail -H "Content-type:application/json" -d "{\"description\": \"It is in a good condition.\", \"comment\": \"What is the model of fridge?\"}"
+curl -X PUT localhost:8080/productDetails/3 -H "Content-type:application/json" -d "{\"description\": \"It is in a good condition.\", \"comment\": \"how old is the fridge\"}"
+curl -X DELETE localhost:8080/productDetails/1
 

@@ -67,7 +67,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "project.Product{" +
                 "id=" + id +
                 ", productCategory='" + productCategory + '\'' +
                 ", name='" + name + '\'' +

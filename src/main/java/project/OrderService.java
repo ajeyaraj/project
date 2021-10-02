@@ -36,8 +36,8 @@ public class OrderService {
         //Valid customer ID with the Customer Service.
         //If yes, it returns customer’s address and phone number.
         String customerAddress = customerService.validCustomerId(order.getCustomerId());
-        //Checks the stock quantity with the Product Service.
-        //If there is enough quantity in stock, the Product Service returns the unit price
+        //Checks the stock quantity with the project.Product Service.
+        //If there is enough quantity in stock, the project.Product Service returns the unit price
         //int unitPrice = productService.checkProductQuantity(order.getProductName());
     }
 

@@ -3,11 +3,12 @@ package project;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
+import java.util.List;
 
 interface ContactRepository extends JpaRepository<Contact, Long> {
 
-    Optional<Contact> findContactByName(String name);
-    Optional<Contact> findContactByPhone(String phone);
-    Optional<Contact> findContactByEmail(String email);
-    Optional<Contact> findContactByPosition(String position);
+    List<Contact> findContactByName(String name);
+    List<Contact> findContactByPhone(String phone);
+    List<Contact> findContactByEmail(String email);
+    List<Contact> findContactByPosition(String position);
 }

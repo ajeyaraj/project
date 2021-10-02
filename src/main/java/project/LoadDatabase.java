@@ -17,7 +17,7 @@ class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(CustomerRepository customerRepository, ContactRepository contactRepository, ProductRepository productRepository) {
+    CommandLineRunner initDatabase(CustomerRepository customerRepository, ContactRepository contactRepository, ProductRepository productRepository, ProductDetailRepository productDetailRepository) {
         return args -> {
             log.info("Preloading " + customerRepository.save(new Customer("Kmart", "Macquarie centre", "Australia")));
             log.info("Preloading " + customerRepository.save(new Customer("Woolworths", "Ryde shopping mall", "Australia")));
@@ -26,7 +26,8 @@ class LoadDatabase {
             log.info("Preloading " + productRepository.save(new Product("Furniture", "Single King size mattress", 100.00, 5)));
             log.info("Preloading " + productRepository.save(new Product("Furniture", "Wooden Bed side table", 45.00, 10)));
             log.info("Preloading " + productRepository.save(new Product("Garden supplies", "Lawn mower", 250.00, 5)));
-
+            log.info("Preloading " + productDetailRepository.save(new ProductDetail("Good looking furniture", "Nice one, how much is it")));
+            log.info("Preloading " + productDetailRepository.save(new ProductDetail("Multipurpose table in good condition", "Is it still available")));
         };
     }
 
