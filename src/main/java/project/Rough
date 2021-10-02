@@ -45,3 +45,7 @@ curl -X POST localhost:8080/addProductDetail -H "Content-type:application/json" 
 curl -X PUT localhost:8080/productDetails/3 -H "Content-type:application/json" -d "{\"description\": \"It is in a good condition.\", \"comment\": \"how old is the fridge\"}"
 curl -X DELETE localhost:8080/productDetails/1
 
+Order:
+curl -v localhost:8080/orders
+
+curl -X POST localhost:8080/addOrder -H "Content-type:application/json" -d "{\"customerId\": 2, \"productName\": \"Wooden Bed side table\", \"quantity\":3}"

@@ -1,6 +1,7 @@
 package project;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,5 +72,15 @@ public class ProductService {
             return product.getPrice();
         }
         return null;
+    }
+
+    //update Stock Quantity of product ordered
+    @EventListener
+    public void updateStockQuantity(OrderEvent orderEvent){
+        String productName = orderEvent.getProductName();
+        int quantity = orderEvent.getQuantity();
+        Product product = getProductByName(productName);
+        int newStockQuantity = product.getStockQuantity() - quantity;
+        product.setStockQuantity(newStockQuantity);
     }
 }
