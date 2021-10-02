@@ -2,6 +2,8 @@ package project;
 
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.DomainEvents;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +15,13 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final CustomerService customerService;
-    //private final ProductService productService;
+    private final ProductService productService;
 
     @Autowired
-    public OrderService (OrderRepository orderRepository, CustomerService customerService){
+    public OrderService (OrderRepository orderRepository, CustomerService customerService,ProductService productService ){
         this.orderRepository = orderRepository;
         this.customerService = customerService;
-        //this.productService = productService;
+        this.productService = productService;
     }
 
     public List<Order> getAllOrders(){
@@ -33,12 +35,17 @@ public class OrderService {
 
     //Create order
     public void createNewOrder(Order order) throws CustomerNotFoundException{
-        //Valid customer ID with the Customer Service.
-        //If yes, it returns customer’s address and phone number.
+        //Valid customer ID with the Customer Service. If yes, it returns customer’s address and phone number.
         String customerAddress = customerService.validCustomerId(order.getCustomerId());
-        //Checks the stock quantity with the project.Product Service.
-        //If there is enough quantity in stock, the project.Product Service returns the unit price
-        //int unitPrice = productService.checkProductQuantity(order.getProductName());
+        //Checks the stock quantity with the project.Product Service. If there is enough quantity in stock, the project.Product Service returns the unit price.
+        int quantityNeededCustomer = order.getQuantity();
+        String productName = order.getProductName();
+        Double unitPrice = productService.getUnitPrice(productName, quantityNeededCustomer);
+        //Next, the Order Service raises a domain event for the order, which triggers a
+        //notification for the Product Service to update the stock quantity.
+        if(unitPrice != null){
+
+        }
     }
 
     //Delete order

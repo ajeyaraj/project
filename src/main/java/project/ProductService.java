@@ -29,7 +29,7 @@ public class ProductService {
         return productRepository.findProductByProductCategory(categoryName);
     }
 
-    public List<Product> getProductByName(String name) {
+    public Product getProductByName(String name) {
         return productRepository.findProductByName(name);
     }
 
@@ -61,5 +61,15 @@ public class ProductService {
     //Delete product
     public void deleteProductById(Long id) {
         productRepository.deleteById(id);
+    }
+
+    //Return unit price if enough quantity in stock
+    public Double getUnitPrice(String productName, int quantity){
+        Product product = productRepository.findProductByName(productName);
+        int availableStock =  product.getStockQuantity();
+        if(availableStock >= quantity) {
+            return product.getPrice();
+        }
+        return null;
     }
 }

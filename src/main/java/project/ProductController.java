@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/productName/{productName}")
-    public List<Product> getProductByName(@PathVariable String productName){
+    public Product getProductByName(@PathVariable String productName){
         return productService.getProductByName(productName);
     }
 
