@@ -1,4 +1,4 @@
-package project;
+package project.customer;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ public class Contact {
 
     public Contact() {}
 
-    Contact(String name, String phone, String email, String position){
+    public Contact(String name, String phone, String email, String position){
         this.name = name;
         this.phone = phone;
         this.email = email;

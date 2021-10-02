@@ -10,6 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import project.customer.Contact;
+import project.customer.ContactRepository;
+import project.customer.Customer;
+import project.customer.CustomerRepository;
+import project.order.Order;
+import project.order.OrderRepository;
+import project.product.Product;
+import project.product.ProductDetail;
+import project.product.ProductDetailRepository;
+import project.product.ProductRepository;
 
 @Configuration
 public class LoadDatabase {

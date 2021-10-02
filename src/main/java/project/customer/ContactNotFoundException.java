@@ -1,4 +1,4 @@
-package project;
+package project.customer;
 
 public class ContactNotFoundException extends RuntimeException {
 

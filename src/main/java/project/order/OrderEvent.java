@@ -1,13 +1,9 @@
-package project;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.context.ApplicationEvent;
+package project.order;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.Clock;
 
 @Entity
 public class OrderEvent {

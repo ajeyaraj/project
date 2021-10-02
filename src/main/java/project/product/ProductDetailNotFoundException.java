@@ -1,4 +1,4 @@
-package project;
+package project.product;
 
 public class ProductDetailNotFoundException extends RuntimeException{
 

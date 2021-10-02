@@ -1,4 +1,4 @@
-package project;
+package project.order;
 
 public class OrderNotFoundException extends RuntimeException {
 

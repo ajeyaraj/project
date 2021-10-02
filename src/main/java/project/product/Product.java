@@ -1,4 +1,4 @@
-package project;
+package project.product;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -67,7 +67,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "project.Product{" +
+        return "project.product.Product{" +
                 "id=" + id +
                 ", productCategory='" + productCategory + '\'' +
                 ", name='" + name + '\'' +

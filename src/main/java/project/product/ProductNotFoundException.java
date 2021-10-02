@@ -1,4 +1,4 @@
-package project;
+package project.product;
 
 public class ProductNotFoundException extends RuntimeException {
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
+package project.product;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +21,7 @@ public class ProductDetail {
 
     public ProductDetail() {}
 
-    ProductDetail(String productCategory, String price){
+    public ProductDetail(String productCategory, String price){
         this.description = productCategory;
         this.comment = price;
     }

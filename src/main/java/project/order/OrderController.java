@@ -1,7 +1,9 @@
-package project;
+package project.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import project.customer.Customer;
+import project.product.Product;
 
 import java.util.List;
 

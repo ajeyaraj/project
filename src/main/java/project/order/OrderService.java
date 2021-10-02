@@ -1,11 +1,14 @@
-package project;
+package project.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import project.customer.Customer;
+import project.customer.CustomerService;
+import project.product.Product;
+import project.product.ProductService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -37,7 +40,7 @@ public class OrderService {
     public Double createNewOrder(Order order) {
         //Valid customer ID with the Customer Service. If yes, it returns customer’s address and phone number.
         String customerAddress = customerService.validCustomerId(order.getCustomerId());
-        //Checks the stock quantity with the project.Product Service. If there is enough quantity in stock, the project.Product Service returns the unit price.
+        //Checks the stock quantity with the project.product.Product Service. If there is enough quantity in stock, the project.product.Product Service returns the unit price.
         int quantityNeededCustomer = order.getQuantity();
         String productName = order.getProductName();
         Double unitPrice = productService.getUnitPrice(productName, quantityNeededCustomer);

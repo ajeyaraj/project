@@ -1,8 +1,9 @@
-package project;
+package project.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
+import project.order.OrderEvent;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    //project.Product methods
+    //project.product.Product methods
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
