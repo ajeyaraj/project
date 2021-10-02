@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-interface ProductDetailRepository extends JpaRepository<ProductDetail, Long> {
+public interface ProductDetailRepository extends JpaRepository<ProductDetail, Long> {
 
     List<ProductDetail> findProductDetailByDescription(String description);
     List<ProductDetail> findProductDetailByComment(String comment);

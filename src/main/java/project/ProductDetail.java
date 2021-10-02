@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-class ProductDetail {
+public class ProductDetail {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

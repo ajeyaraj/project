@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     List<Customer> findCustomerByCompanyName(String companyName);
     List<Customer> findCustomerByAddress(String address);
