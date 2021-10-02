@@ -28,12 +28,12 @@ public class ContactService {
     }
 
     //Create a new contact
-    public void addNewContact(Contact contact){
+    public Contact addNewContact(Contact contact){
         Optional<Contact> contactByEmail = contactRepository.findContactByEmail(contact.getEmail());
         if(contactByEmail.isPresent()){
             throw new IllegalStateException("email taken");
         }
-        contactRepository.save(contact);
+        return contactRepository.save(contact);
     }
 
     //update customer

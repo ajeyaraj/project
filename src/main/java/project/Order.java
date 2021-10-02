@@ -3,20 +3,24 @@ package project;
 import javax.persistence.*;
 
 @Entity
+@Table
 public class Order {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+    private Long customerId;
     private String supplier;
-    private String product;
+    private String productName;
     private int quantity;
 
     public Order (){
     }
 
-    public Order(String supplier, String product, int quantity) {
+    public Order(Long customerId, String supplier, String productName, int quantity) {
+        this.customerId = customerId;
         this.supplier = supplier;
-        this.product = product;
+        this.productName = productName;
         this.quantity = quantity;
     }
 
@@ -28,6 +32,14 @@ public class Order {
         this.id = id;
     }
 
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
     public String getSupplier() {
         return supplier;
     }
@@ -36,12 +48,12 @@ public class Order {
         this.supplier = supplier;
     }
 
-    public String getProduct() {
-        return product;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public int getQuantity() {
@@ -57,7 +69,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", supplier='" + supplier + '\'' +
-                ", product='" + product + '\'' +
+                ", product='" + productName + '\'' +
                 ", quantity=" + quantity +
                 '}';
     }

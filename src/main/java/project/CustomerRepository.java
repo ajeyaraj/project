@@ -8,12 +8,14 @@ package project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    Optional<Customer> findCustomerByCompanyName(String companyName);
-    Optional<Customer> findCustomerByAddress(String address);
-    Optional<Customer> findCustomerByCountry(String country);
+    List<Customer> findCustomerByCompanyName(String companyName);
+    List<Customer> findCustomerByAddress(String address);
+    List<Customer> findCustomerByCountry(String country);
 }

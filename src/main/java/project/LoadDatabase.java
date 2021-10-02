@@ -14,18 +14,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class LoadDatabase {
 
-  private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
+    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-  @Bean
-  CommandLineRunner initDatabase(CustomerRepository repository1, ContactRepository repository2) {
+    @Bean
+    CommandLineRunner initDatabase(CustomerRepository customerRepository, ContactRepository contactRepository, ProductRepository productRepository) {
+        return args -> {
+            log.info("Preloading " + customerRepository.save(new Customer("Kmart", "Macquarie centre", "Australia")));
+            log.info("Preloading " + customerRepository.save(new Customer("Woolworths", "Ryde shopping mall", "Australia")));
+            log.info("Preloading " + contactRepository.save(new Contact("Sowmiya Ashokkumar", "0424300789", "jsowmiya34@gmail.com", "General Manager")));
+            log.info("Preloading " + contactRepository.save(new Contact("Ashokkumar Jeyaraj", "0424450789", "jashok45@gmail.com", "Senior Software Engineer")));
+            log.info("Preloading " + productRepository.save(new Product("Furniture", "Single King size mattress", 100.00, 5)));
+            log.info("Preloading " + productRepository.save(new Product("Furniture", "Wooden Bed side table", 45.00, 10)));
+            log.info("Preloading " + productRepository.save(new Product("Garden supplies", "Lawn mower", 250.00, 5)));
 
-    return args -> {
-      log.info("Preloading " + repository1.save(new Customer("Jill Jones", "Female" ,18)));
-      log.info("Preloading " + repository1.save(new Customer("Jack Jones", "Male" ,28)));
-      log.info("Preloading " + repository2.save(new Contact("Sowmiya Ashokkumar", "0424300789" , "jsowmiya34@gmail.com", "General Manager")));
-      log.info("Preloading " + repository2.save(new Contact("Ashokkumar Jeyaraj", "0424450789" , "jashok45@gmail.com", "Senior Software Engineer")));
-
-    };
-  }
+        };
+    }
 
 }

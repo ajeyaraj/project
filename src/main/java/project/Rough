@@ -1,0 +1,26 @@
+Customer:
+curl -v localhost:8080/customers
+curl -v localhost:8080/customers/id/2
+curl -v localhost:8080/customers/companyName/Kmart
+curl -v localhost:8080/customers/address/Ryde%20shopping%20mall
+curl -v localhost:8080/customers/country/Australia
+
+curl -X POST localhost:8080/addCustomer -H "Content-type:application/json" -d "{\"companyName\": \"Aldi\", \"address\": \"Epping Rd\", \"country\": \"America\"}"
+curl -X PUT localhost:8080/customers/2 -H "Content-type:application/json" -d "{\"companyName\": \"Kmart\", \"address\": \"Marsfield\", \"country\": \"America\"}"
+curl -X DELETE localhost:8080/customers/1
+
+Product:
+curl -v localhost:8080/products
+curl -v localhost:8080/products/id/2
+curl -v localhost:8080/products/categoryName/Garden%20supplies
+curl -v localhost:8080/products/productName/Single%20King%20size%20mattress
+curl -v localhost:8080/products/price/250.0
+curl -v localhost:8080/products/quantity/5
+
+curl -X POST localhost:8080/addProduct -H "Content-type:application/json" -d "{\"productCategory\": \"Electronics\", \"name\": \"Radio\", \"price\": 50.00, \"stockQuantity\": 5}"
+curl -X PUT localhost:8080/products/4 -H "Content-type:application/json" -d "{\"productCategory\": \"Electronics\", \"name\": \"Fridge\", \"price\": 50.00, \"stockQuantity\": 5}"
+curl -X DELETE localhost:8080/products/1
+
+Product detail:
+
+

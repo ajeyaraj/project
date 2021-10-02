@@ -9,12 +9,15 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 class Customer {
 
-  private @Id @GeneratedValue Long id;
+  @Id
+  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  private Long id;
   private String companyName;
   private String address;
   private String country;

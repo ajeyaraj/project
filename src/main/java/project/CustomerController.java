@@ -28,14 +28,29 @@ public class CustomerController {
         return customerService.getAllCustomers();
     }
 
-    @GetMapping("/customers/{id}")
+    @GetMapping("/customers/id/{id}")
     public Customer getCustomerById(@PathVariable Long id){
         return customerService.getCustomerById(id);
     }
 
+    @GetMapping("/customers/companyName/{companyName}")
+    public List<Customer> getCustomerByCompanyName(@PathVariable String companyName){
+        return customerService.getCustomerByCompanyName(companyName);
+    }
+
+    @GetMapping("/customers/address/{address}")
+    public List<Customer> getCustomerByAddress(@PathVariable String address){
+        return customerService.getCustomerByAddress(address);
+    }
+
+    @GetMapping("/customers/country/{country}")
+    public List<Customer> getCustomerByCountry(@PathVariable String country){
+        return customerService.getCustomerByCountry(country);
+    }
+
     @PostMapping("/addCustomer")
-    public void createNewCustomer(@RequestBody Customer newCustomer) {
-        customerService.addNewCustomer(newCustomer);
+    public Customer createNewCustomer(@RequestBody Customer newCustomer) {
+        return customerService.addNewCustomer(newCustomer);
     }
 
     @PutMapping("/customers/{id}")
