@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -38,7 +39,7 @@ public class OrderService {
     }
 
     //Create order
-    public void createNewOrder(Order order) {
+    public Double createNewOrder(Order order) {
         //Valid customer ID with the Customer Service. If yes, it returns customer’s address and phone number.
         String customerAddress = customerService.validCustomerId(order.getCustomerId());
         //Checks the stock quantity with the project.Product Service. If there is enough quantity in stock, the project.Product Service returns the unit price.
@@ -53,10 +54,9 @@ public class OrderService {
             orderEvent.setQuantity(order.getQuantity());
             publisher.publishEvent(orderEvent);
             orderRepository.save(order);
-            System.out.println("Order placed");
-        }else {
-            System.out.println("Cannot place order due to insufficient stock quantity");
+            return unitPrice;
         }
+        return null;
     }
 
     //Delete order

@@ -27,6 +27,13 @@ public class  OrderController {
 
     @PostMapping("/addOrder")
     public void createNewOrder(@RequestBody Order newOrder) {
-        orderService.createNewOrder(newOrder);
+        Double price = orderService.createNewOrder(newOrder);
+        if(price != null){
+            int quantity = newOrder.getQuantity();
+            double totalPrice = price * quantity;
+            System.out.println("Order placed. The total order price is " + totalPrice );
+        }else {
+            System.out.println("Cannot place order due to insufficient stock quantity");
+        }
     }
 }
