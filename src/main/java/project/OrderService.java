@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -13,14 +14,15 @@ public class OrderService {
     private final CustomerService customerService;
     private final ProductService productService;
     private ApplicationEventPublisher publisher;
-
+    private CustomerRepository customerRepository;
 
     @Autowired
-    public OrderService (OrderRepository orderRepository, CustomerService customerService,ProductService productService, ApplicationEventPublisher publisher){
+    public OrderService (OrderRepository orderRepository, CustomerService customerService,ProductService productService, ApplicationEventPublisher publisher, CustomerRepository customerRepository){
         this.orderRepository = orderRepository;
         this.customerService = customerService;
         this.productService = productService;
         this.publisher = publisher;
+        this.customerRepository = customerRepository;
     }
 
     public List<Order> getAllOrders(){
@@ -33,7 +35,7 @@ public class OrderService {
     }
 
     //Create order
-    public Double createNewOrder(Order order) {
+    public void createNewOrder(Order order) {
         //Valid customer ID with the Customer Service. If yes, it returns customer’s address and phone number.
         String customerAddress = customerService.validCustomerId(order.getCustomerId());
         //Checks the stock quantity with the project.Product Service. If there is enough quantity in stock, the project.Product Service returns the unit price.
@@ -48,9 +50,10 @@ public class OrderService {
             orderEvent.setQuantity(order.getQuantity());
             publisher.publishEvent(orderEvent);
             orderRepository.save(order);
-            return unitPrice;
+            System.out.println("Order placed");
+        }else {
+            System.out.println("Cannot place order due to insufficient stock quantity");
         }
-        return null;
     }
 
     //Delete order

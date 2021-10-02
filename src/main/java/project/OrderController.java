@@ -9,10 +9,14 @@ import java.util.List;
 public class  OrderController {
 
     private final OrderService orderService;
+    private final OrderRepository orderRepository;
+    private final CustomerRepository customerRepository;
 
     @Autowired
-    public OrderController(OrderService orderService){
+    public OrderController(OrderService orderService, OrderRepository orderRepository, CustomerRepository customerRepository){
         this.orderService = orderService;
+        this.orderRepository = orderRepository;
+        this.customerRepository = customerRepository;
     }
 
     @GetMapping("/orders")
@@ -27,13 +31,8 @@ public class  OrderController {
 
     @PostMapping("/addOrder")
     public void createNewOrder(@RequestBody Order newOrder) {
-        Double price = orderService.createNewOrder(newOrder);
-        if(price != null){
-            int quantity = newOrder.getQuantity();
-            double totalPrice = price * quantity;
-            System.out.println("Order placed. The total order price is " + totalPrice );
-        }else {
-            System.out.println("Cannot place order due to insufficient stock quantity");
-        }
+        orderService.createNewOrder(newOrder);
     }
+
+
 }

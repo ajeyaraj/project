@@ -6,8 +6,6 @@
 package project;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,5 +59,10 @@ public class CustomerController {
     @DeleteMapping("/customers/{id}")
     public void deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomerById(id);
+    }
+
+    @GetMapping("/customerByOrder/{id}")
+    public Optional<Customer> getCustomerByOrder(@PathVariable Order id) {
+        return customerService.getCustomerByOrder(id);
     }
 }

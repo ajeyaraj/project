@@ -67,4 +67,8 @@ public class CustomerService {
                 .orElseThrow(() -> new CustomerNotFoundException(id));
         return customer.getAddress();
     }
+
+    public Optional<Customer> getCustomerByOrder(Order order){
+        return Optional.ofNullable(order).map(p -> customerRepository.findById(p.getId())).orElse(null);
+    }
 }
